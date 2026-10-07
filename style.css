@@ -1,0 +1,30 @@
+:root{--bg:#f6efe6;--panel:#fffaf3;--ink:#2b1620;--muted:#7a6068;--wine:#7b1e3a;--amber:#c97a12;--line:#e3d3c4;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg:#1d0f16;--panel:#2a1520;--ink:#f6e9dc;--muted:#b79aa3;--wine:#d9546f;--amber:#f2b14f;--line:#432434}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 Georgia,"Times New Roman",serif;min-height:100vh}
+main{max-width:760px;margin:0 auto;padding:28px 18px 48px}
+h1{font-size:clamp(2rem,7vw,3.2rem);line-height:1.05;margin:0 0 8px;letter-spacing:-.02em}
+.sub{margin:0 0 28px;color:var(--muted);max-width:46ch}
+.choices{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+@media (max-width:560px){.choices{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card h2{margin:0 0 6px;font-size:1.2rem}
+.card p{margin:0 0 14px;color:var(--muted);font-size:.95rem}
+button,input,select{font:inherit}
+button{background:var(--wine);color:#fff;border:0;border-radius:10px;padding:12px 18px;cursor:pointer;font-weight:600;width:100%}
+button.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+button:disabled{opacity:.5;cursor:not-allowed}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+input,select{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);margin-bottom:10px}
+.lbl{display:block;margin:14px 0 6px;font-size:.9rem;color:var(--muted)}
+.hidden{display:none!important}
+.code{font:700 2rem/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.08em;color:var(--amber);background:var(--bg);border:1px dashed var(--amber);border-radius:10px;padding:14px;text-align:center;margin:10px 0;user-select:all;word-break:break-all}
+.status{margin:14px 0;color:var(--muted);font-size:.95rem}
+.status b{color:var(--ink)}
+.screen{position:relative;margin-top:14px;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center}
+video{width:100%;height:100%;object-fit:contain;background:#000}
+.overlay{position:absolute;inset:auto 12px 56px auto;width:auto;background:var(--amber);color:#1d0f16}
+.row{display:flex;gap:10px;margin-top:12px}
+.tips{margin:26px 0 0;padding:16px 0 0 18px;font-size:.9rem;color:var(--muted);border-top:1px solid var(--line)}
+.tips li{margin:4px 0}

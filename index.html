@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Comparte tu pantalla y mira películas a distancia con una sola persona.">
+<meta name="robots" content="noindex">
+<title>Sala de cine para dos</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍿</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Sala de cine para dos</h1>
+  <p class="sub">Una persona comparte su pantalla y la otra la ve en directo. Sin cuentas, sin cámara, sin llamadas.</p>
+
+  <section id="home" class="choices">
+    <div class="card">
+      <h2>Voy a transmitir</h2>
+      <p>Crea una sala y comparte tu pantalla o una pestaña con audio.</p>
+      <button id="btnHost">Crear sala</button>
+    </div>
+    <div class="card">
+      <h2>Voy a mirar</h2>
+      <p>Escribe el código que te pasó la otra persona.</p>
+      <input id="codeIn" placeholder="cine-xxxxx" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Código de la sala">
+      <button id="btnJoin" class="alt">Entrar</button>
+    </div>
+  </section>
+
+  <section id="hostView" class="hidden">
+    <div class="card">
+      <h2>Tu sala</h2>
+      <p>Pásale el código o el enlace a la otra persona.</p>
+      <div class="code" id="myCode">…</div>
+      <div class="row">
+        <button id="btnCopy" class="alt">Copiar código</button>
+        <button id="btnLink" class="alt">Copiar enlace</button>
+      </div>
+      <label class="lbl" for="quality">Calidad</label>
+      <select id="quality">
+        <option value="1080">Alta (1080p), si tu internet lo permite</option>
+        <option value="720">Normal (720p), recomendada</option>
+        <option value="480">Ahorro (480p), para conexiones lentas</option>
+      </select>
+      <div class="row">
+        <button id="btnShare">Compartir pantalla</button>
+        <button id="btnFile" class="alt">Reproducir un archivo</button>
+      </div>
+      <div class="row"><button id="btnStop" class="alt hidden">Dejar de transmitir</button></div>
+      <input type="file" id="fileIn" accept="video/*" class="hidden">
+    </div>
+    <div class="status" id="hostStatus" role="status">Creando sala…</div>
+    <div class="screen"><video id="preview" autoplay muted playsinline></video></div>
+  </section>
+
+  <section id="guestView" class="hidden">
+    <div class="status" id="guestStatus" role="status">Conectando…</div>
+    <div class="screen">
+      <video id="remote" autoplay playsinline controls></video>
+      <button id="btnUnmute" class="overlay hidden">Toca para activar el sonido</button>
+    </div>
+    <div class="row">
+      <button id="btnFull" class="alt">Pantalla completa</button>
+      <button id="btnLeave" class="alt">Salir</button>
+    </div>
+  </section>
+
+  <ul class="tips">
+    <li>Al compartir, elige <b>pestaña</b> y marca <b>compartir audio de la pestaña</b> (Chrome o Edge en computador).</li>
+    <li>Con <b>Reproducir un archivo</b> eliges una película de tu computador: no sale negro, el audio va incluido y la calidad es mejor. Usa MP4 (H.264) o WebM en Chrome o Edge.</li>
+    <li>Si ves negro, desactiva la aceleración por hardware del navegador y reinícialo.</li>
+    <li>Las plataformas con protección DRM (Netflix, Disney+, Prime) no se pueden capturar.</li>
+    <li>Transmitir solo funciona desde un computador. Mirar funciona también desde el celular.</li>
+  </ul>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
