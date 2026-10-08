@@ -85,14 +85,12 @@ function callGuest(id) {
 
 function tuneSender(call) {
   const pc = call.peerConnection; if (!pc) return;
-  const fps = parseInt($('fps').value, 10);
-  const bitrate = (CONFIG.bitrates[$('quality').value] || 3500000) * (fps > 30 ? 1.5 : 1);
+  const bitrate = CONFIG.bitrates[$('quality').value] || 3500000;
   pc.getSenders().forEach(s => {
     if (!s.track || s.track.kind !== 'video') return;
     const p = s.getParameters();
     if (!p.encodings || !p.encodings.length) p.encodings = [{}];
     p.encodings[0].maxBitrate = bitrate;
-    if (!fileUrl) p.encodings[0].maxFramerate = fps;
     p.degradationPreference = 'maintain-framerate';
     s.setParameters(p).catch(() => {});
   });
@@ -110,10 +108,9 @@ $('btnLink').onclick = () => copy(location.origin + location.pathname + '?sala='
 
 $('btnShare').onclick = async () => {
   const h = parseInt($('quality').value, 10);
-  const fps = parseInt($('fps').value, 10);
   try {
     stream = await navigator.mediaDevices.getDisplayMedia({
-      video: { width: { ideal: h * 16 / 9 }, height: { ideal: h }, frameRate: { ideal: fps, max: fps } },
+      video: { width: { ideal: h * 16 / 9 }, height: { ideal: h }, frameRate: { ideal: 30, max: 30 } },
       audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false }
     });
   } catch (e) {
